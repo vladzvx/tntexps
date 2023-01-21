@@ -3,8 +3,6 @@
 EXPOSE 8081
 EXPOSE 3301
 EXPOSE 3302
-EXPOSE 8082
-EXPOSE 8084
 
 RUN yum install -y git \
                    cmake \
@@ -25,9 +23,9 @@ WORKDIR /app/my_test_cluster
 RUN sed -ie "/app.roles.custom/a 'app.roles.my_test_cluster'," init.lua
 RUN sed -ie "/app.roles.custom/a 'cartridge.roles.crud-storage'," init.lua
 RUN sed -ie "/app.roles.custom/a 'cartridge.roles.crud-router'," init.lua
-RUN sed -ie "/tarantool/a 'crud == 0.12.0'," my_test_cluster-scm-1.rockspec
+RUN sed -ie "/tarantool/a 'crud == 0.14.1'," my_test_cluster-scm-1.rockspec
 RUN sed -ie "/tarantool/a 'ddl == 1.6.2'," my_test_cluster-scm-1.rockspec
-RUN sed -ie "/tarantool/a 'metrics == 0.3.0-1'," my_test_cluster-scm-1.rockspec
+#RUN sed -ie "/tarantool/a 'metrics == 0.3.0-1'," my_test_cluster-scm-1.rockspec
 
 RUN rm /app/my_test_cluster/instances.yml
 RUN rm /app/my_test_cluster/replicasets.yml
