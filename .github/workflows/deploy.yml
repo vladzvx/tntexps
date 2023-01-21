@@ -16,6 +16,7 @@ jobs:
         username: ${{ secrets.TEST_USER }}
         password  : ${{ secrets.TEST_PWD }}
         port: ${{ secrets.TEST_PORT }}
+        command_timeout: 200m
         script: |
           cd /bin
           rm -r tntexps
