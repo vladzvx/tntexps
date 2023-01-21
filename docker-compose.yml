@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  service:
+    ports:
+      - 5000:80
+    image: ${DOCKER_REGISTRY}service
+    build:
+      context: .
+      dockerfile: Service/Dockerfile
+
+  tarantool1:
+    container_name: Tarantool1
+    hostname: tarantool1
+    image: tarantool/tarantool
+    ports:
+      - 33011:3301
+      - 8081:8081
+    environment:
+      TARANTOOL_USER_NAME: admin
+      TARANTOOL_USER_PASSWORD: secret-cluster-cookie
+
+  tarantool2:
+    image: my_test_tarantool_claster
+    container_name: Tarantool2
+    hostname: tarantool2
+    build:
+      context: Infrastructure/Tarantool
+      dockerfile: Dockerfile
+        
+    ports:
+      - 33012:3301
+      - 3302:3302
+      - 8281:8081
+    environment:
+      TARANTOOL_USER_NAME: admin
+      TARANTOOL_USER_PASSWORD: secret-cluster-cookie

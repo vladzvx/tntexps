@@ -1,0 +1,33 @@
+﻿spaces:
+  records:
+    engine: memtx
+    is_local: false
+    temporary: false
+    format:
+    - {name: id, type: string, is_nullable: false}
+    - {name: user_id, type: unsigned,  is_nullable: false}
+    - {name: creation_time, type: integer,  is_nullable: false}
+    - {name: cancellation_time, type: integer,  is_nullable: false}
+    - {name: status, type: integer,  is_nullable: false}
+    - {name: bucket_id, type: unsigned,  is_nullable: false}
+    - {name: user_time_rectangel, type: array,  is_nullable: false}
+
+    indexes:
+    - name: id
+      unique: true
+      parts: [{path: id, type: string, is_nullable: false}]
+      type: TREE
+
+    - name: bucket_id
+      unique: false
+      parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+      type: TREE
+
+    - name: user_time_rectangels
+      unique: false
+      dimension: 2
+      distance: euclid
+      parts: [{path: user_time_rectangel, type: array, is_nullable: false,}]
+      type: RTREE
+
+    sharding_key: [user_id]

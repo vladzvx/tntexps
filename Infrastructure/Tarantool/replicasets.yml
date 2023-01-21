@@ -1,0 +1,31 @@
+﻿router:
+  instances:
+  - router
+  roles:
+  - crud-router
+  - test
+
+shard1:
+  instances:
+  - s1-master
+  - s1-replica1
+
+  roles:
+  - crud-storage
+  - test
+  weight: 11
+  all_rw: false
+  vshard_group: default
+
+shard2:
+  instances:
+  - s2-master
+  - s2-replica1
+
+  roles:
+  - crud-storage
+  - test
+  weight: 11
+  all_rw: false
+  vshard_group: default
+
