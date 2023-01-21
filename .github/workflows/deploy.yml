@@ -18,8 +18,8 @@ jobs:
         port: ${{ secrets.TEST_PORT }}
         script: |
           cd /bin
-          rm -r tarantoolexperiments
+          rm -r tntexps
           git clone https://${{ secrets.GIT_PWD }}@github.com/vladzvx/tntexps
-          chmod u+x tarantoolexperiments
-          cd tarantoolexperiments
+          chmod u+x tntexps
+          cd tntexps
           docker-compose up -d --build
