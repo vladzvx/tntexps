@@ -5,7 +5,7 @@ local vshard = require("vshard")
 local yaml = require('yaml')
 local ddl = require('ddl')
 
-local role_name = 'test_role'
+local role_name = 'my_test_cluster'
 
 --Конфигурирование инстанса тарантула
 local function init(opts)
@@ -37,4 +37,5 @@ end
 return {
     init = init,
     stop = stop,
+    role_name = role_name,
 }

@@ -3,7 +3,7 @@
   - router
   roles:
   - crud-router
-  - test
+  - my_test_cluster
 
 shard1:
   instances:
@@ -12,7 +12,7 @@ shard1:
 
   roles:
   - crud-storage
-  - test
+  - my_test_cluster
   weight: 11
   all_rw: false
   vshard_group: default
@@ -24,7 +24,7 @@ shard2:
 
   roles:
   - crud-storage
-  - test
+  - my_test_cluster
   weight: 11
   all_rw: false
   vshard_group: default

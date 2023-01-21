@@ -19,23 +19,23 @@ RUN yum install -y cartridge-cli
 RUN yum install -y telnet
 
 WORKDIR /app
-RUN cartridge create --name test && cd test
+RUN cartridge create --name my_test_cluster && cd my_test_cluster
 
-WORKDIR /app/test
-RUN sed -ie "/app.roles.custom/a 'app.roles.test'," init.lua
+WORKDIR /app/my_test_cluster
+RUN sed -ie "/app.roles.custom/a 'app.roles.my_test_cluster'," init.lua
 RUN sed -ie "/app.roles.custom/a 'cartridge.roles.crud-storage'," init.lua
 RUN sed -ie "/app.roles.custom/a 'cartridge.roles.crud-router'," init.lua
-RUN sed -ie "/tarantool/a 'crud == 0.12.0'," test-scm-1.rockspec
-RUN sed -ie "/tarantool/a 'ddl == 1.6.2'," test-scm-1.rockspec
-RUN sed -ie "/tarantool/a 'metrics == 0.3.0-1'," test-scm-1.rockspec
+RUN sed -ie "/tarantool/a 'crud == 0.12.0'," my_test_cluster-scm-1.rockspec
+RUN sed -ie "/tarantool/a 'ddl == 1.6.2'," my_test_cluster-scm-1.rockspec
+RUN sed -ie "/tarantool/a 'metrics == 0.3.0-1'," my_test_cluster-scm-1.rockspec
 
-RUN rm /app/test/instances.yml
-RUN rm /app/test/replicasets.yml
+RUN rm /app/my_test_cluster/instances.yml
+RUN rm /app/my_test_cluster/replicasets.yml
 
-COPY test.lua /app/test/app/roles/
-COPY instances.yml /app/test/
-COPY replicasets.yml /app/test/
-COPY schema.yml /app/test/
+COPY my_test_cluster.lua /app/my_test_cluster/app/roles/
+COPY instances.yml /app/my_test_cluster/
+COPY replicasets.yml /app/my_test_cluster/
+COPY schema.yml /app/my_test_cluster/
 
 RUN cartridge build
 
