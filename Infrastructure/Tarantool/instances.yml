@@ -1,26 +1,26 @@
 ﻿my_test_cluster.router:
-  advertise_uri: localhost:3301
+  advertise_uri: 0.0.0.0:3301
   http_port: 8081
 
 my_test_cluster.s1-master:
-  advertise_uri: localhost:3302
+  advertise_uri: 0.0.0.0:3302
   http_port: 8082
 
 my_test_cluster.s1-replica1:
-  advertise_uri: localhost:3303
+  advertise_uri: 0.0.0.0:3303
   http_port: 8083
   http_port_enabled: false
 
-my_test_cluster.s2-master:
-  advertise_uri: localhost:3304
-  http_port: 8084
+#my_test_cluster.s2-master:
+#  advertise_uri: localhost:3304
+#  http_port: 8084
 
-my_test_cluster.s2-replica1:
-  advertise_uri: localhost:3305
-  http_port: 8085
-  http_port_enabled: false
+#my_test_cluster.s2-replica1:
+#  advertise_uri: localhost:3305
+#  http_port: 8085
+#  http_port_enabled: false
 
 
 my_test_cluster-stateboard:
-  listen: localhost:4401
+  listen: 0.0.0.0:4401
   password: passwd
